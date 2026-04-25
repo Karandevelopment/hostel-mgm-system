@@ -1,0 +1,191 @@
+/* Mirrored Student Login CSS mapped for Admin & Staff Login structures */
+* {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-page-body {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #1e1e2f 0%, #151522 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #ffffff;
+    animation: fadeIn var(--transition-med, 0.5s ease);
+}
+
+.bg-overlay {
+    display: none;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 3.5rem;
+    width: 100%;
+    max-width: 550px;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-align: left;
+}
+
+.form-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 198, 255, 0.4);
+}
+
+.form-box h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    transform: translateY(-50%);
+    color: #a0a0b2;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1.1rem 1.5rem 1.1rem 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.input-group:focus-within i {
+    color: var(--accent-color);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px var(--accent-glow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px var(--accent-glow);
+    filter: brightness(1.1);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-error {
+    background: rgba(255, 77, 79, 0.1);
+    border: 1px solid rgba(255, 77, 79, 0.3);
+    color: #ff4d4f;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+.switch {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #a0a0b2;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.switch a {
+    color: #4facfe;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.switch a:hover {
+    color: #00f2fe;
+    text-shadow: 0 0 8px rgba(79, 172, 254, 0.4);
+}
+
+@media (max-width: 480px) {
+    .login-page-body {
+        padding: 0;
+    }
+    
+    .form-box {
+        padding: 2rem 1.5rem;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+        box-shadow: none;
+    }
+    
+    .form-box h2 {
+        font-size: 2rem;
+    }
+    
+    .switch {
+        flex-direction: column;
+        align-items: center;
+    }
+}

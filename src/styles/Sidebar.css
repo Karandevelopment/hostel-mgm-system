@@ -1,0 +1,180 @@
+/* Sidebar Container - Refactored for Theme Support */
+.sidebar, .sidebar-wrapper {
+  background: var(--bg-secondary); /* Dynamic theme-based background */
+  transition: background var(--transition-med), border var(--transition-med);
+}
+
+.sidebar-wrapper {
+  border-right: 1px solid var(--border-color);
+}
+
+.sidebar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 30px 0;
+  transition: all var(--transition-med);
+  color: var(--text-primary);
+}
+
+/* User Profile Section in Sidebar */
+.sidebar-header {
+  padding: 0 24px 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Avatar Container */
+.avatar-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid var(--bg-secondary);
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+
+.avatar-container:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 25px var(--accent-glow);
+}
+
+.sidebar-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.4);
+  transition: transform var(--transition-med);
+}
+
+.avatar-container:hover .sidebar-avatar-img {
+  transform: scale(1.1);
+}
+
+.avatar-letter {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  text-transform: uppercase;
+}
+
+.user-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-shadow: none; /* Removed shadow for cleaner light mode look */
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+/* Navigation List */
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin: 8px 18px;
+}
+
+/* --- Navigation Links --- */
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all var(--transition-med);
+  font-weight: 600;
+  font-size: 0.95rem;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+/* Icon styling */
+.sidebar-nav a i {
+    font-size: 1.1rem;
+    width: 24px;
+    transition: color var(--transition-med), transform var(--transition-fast);
+}
+
+/* Hover Effect */
+.sidebar-nav a:hover {
+  background: rgba(var(--accent-color), 0.05);
+  color: var(--accent-color);
+  transform: translateX(5px);
+  border-color: rgba(var(--accent-color), 0.1);
+}
+
+.sidebar-nav a:hover i {
+    color: var(--accent-color);
+}
+
+/* ACTIVE STATE */
+.sidebar-nav a.active {
+  background: rgba(var(--accent-color), 0.1);
+  color: var(--accent-color);
+  font-weight: 700;
+  border-color: rgba(var(--accent-color), 0.2);
+}
+
+.sidebar-nav a.active i {
+    color: var(--accent-color);
+}
+
+/* Indicator line for active state */
+.sidebar-nav a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 60%;
+  background: var(--accent-color);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Hide scrollbar for clean look */
+.sidebar::-webkit-scrollbar {
+    display: none;
+}

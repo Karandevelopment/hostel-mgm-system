@@ -1,0 +1,81 @@
+import React, { useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import PuppyAnimation from './PuppyAnimation';
+
+const ProtectedRoute = ({ children }) => {
+    const [auth, setAuth] = useState({
+        isAuthorized: null,
+        role: null
+    });
+    const location = useLocation();
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            try {
+                const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+                const response = await fetch(`${BASE_URL}/verify`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+                console.log("Auth Check:", data);
+
+                if (data.authenticated) {
+                    setAuth({
+                        isAuthorized: true,
+                        role: data.role // Ensure backend returns 'admin' or 'student'
+                    });
+                } else {
+                    setAuth({ isAuthorized: false, role: null });
+                }
+            } catch (error) {
+                console.error("Token verification failed:", error);
+                setAuth({ isAuthorized: false, role: null });
+            }
+        };
+
+        verifyToken();
+    }, [location.pathname]); // Re-verify on navigation
+
+    // 1. Show loading while checking auth
+    if (auth.isAuthorized === null) {
+        return <PuppyAnimation />;
+    }
+
+    // 2. If NOT logged in, send to the login selector
+    if (!auth.isAuthorized) {
+        return <Navigate to="/login" replace />;
+    }
+
+    // 3. ROLE-BASED ACCESS CONTROL
+    const path = location.pathname;
+
+    // Block Admins from Student routes (Redirect them to Admin Dashboard)
+    if (auth.role === 'admin' && !path.startsWith('/admin')) {
+        return <Navigate to="/admin/dashboard" replace />;
+    }
+
+    // Block Students from Admin routes (Redirect them to Student Home)
+    if (auth.role === 'student' && path.startsWith('/admin')) {
+        return <Navigate to="/" replace />;
+    }
+
+    // --- STAFF ACCESS CONTROL ---
+    // 1. Block Staff from Admin or Student Home routes
+    if (auth.role === 'staff' && (path.startsWith('/admin') || path === '/')) {
+        return <Navigate to="/staff/dashboard" replace />;
+    }
+
+    // 2. Block non-staff from Staff routes
+    if (auth.role !== 'staff' && path.startsWith('/staff')) {
+        const target = auth.role === 'admin' ? '/admin/dashboard' : '/';
+        return <Navigate to={target} replace />;
+    }
+
+    // 4. Authorized: Render the requested page
+    return children;
+};
+
+export default ProtectedRoute;

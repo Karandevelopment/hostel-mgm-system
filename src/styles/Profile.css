@@ -1,0 +1,322 @@
+/* Container for the profile page */
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: slideUp var(--transition-med);
+}
+
+/* SIDE-BY-SIDE LAYOUT */
+.profile-layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PROFILE CARD */
+.profile-card {
+    background: var(--bg-secondary, #1e293b);
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border: 1px solid var(--border-color, #334155);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+
+.profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glass);
+}
+
+/* Subtle background glow effect */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--accent-glow, rgba(0, 198, 255, 0.05)) 0%, transparent 60%);
+    pointer-events: none;
+    transition: transform 0.5s ease;
+}
+
+.profile-card:hover::before {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.profile-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-primary, #0f172a);
+    outline: 2px solid var(--accent-color, #00c6ff);
+    outline-offset: 4px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: transform var(--transition-med);
+}
+
+.profile-card:hover .profile-avatar {
+    transform: scale(1.05);
+}
+
+.profile-info {
+    z-index: 1;
+}
+
+.profile-info h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.profile-info p {
+    color: var(--text-secondary);
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-badge {
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.edit-btn {
+    margin-top: 20px;
+    background: #062319;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 10px;
+    transition: all var(--transition-med);
+    border: 1px solid #93c83e;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-btn:hover {
+    background: #93c83e;
+    color: #062319;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(147, 200, 62, 0.3);
+}
+
+/* COMBINED DETAILS CARD (Inline Layout) */
+.single-details-card {
+    background: var(--bg-secondary, #1e293b);
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #334155);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-med), box-shadow var(--transition-med);
+    margin-top: 0 !important;
+    margin-bottom: 0px; 
+}
+
+.single-details-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.details-card-header {
+    border-bottom: 2px solid var(--border-color, #334155);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.details-card-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.details-inline-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+}
+
+.detail-box {
+    flex: 1 1 200px;
+    /* Inline side-by-side wrap */
+    background: var(--bg-primary, #0f172a);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #334155);
+    transition: all var(--transition-med);
+}
+
+.detail-box:hover {
+    border-color: var(--accent-color, #00c6ff);
+    background: var(--bg-secondary, #1e293b);
+}
+
+.detail-box.full-width {
+    flex: 1 1 100%;
+}
+
+.detail-box h4 {
+    color: var(--text-secondary, #64748b);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.detail-box p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary, #f8fafc);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* STATS SECTION */
+.stats {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.stat {
+    background: var(--bg-secondary, #1e293b);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 16px;
+    border: 1px solid var(--border-color, #334155);
+    transition: all var(--transition-med);
+}
+
+.stat:hover {
+    background: var(--bg-primary, #0f172a);
+    border-color: var(--accent-color, #00c6ff);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat span {
+    color: var(--text-secondary, #94a3b8);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.stat h2 {
+    margin-top: 12px;
+    color: var(--accent-color, #00c6ff);
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 10px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 15px;
+    }
+
+    .profile-info h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-info p {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .bio-section,
+    .info-box,
+    .stat {
+        padding: 20px 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* DESKTOP SIDE-BY-SIDE GRID */
+@media (min-width: 768px) {
+    .profile-layout-grid {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        align-items: start;
+        gap: 30px;
+    }
+
+    .profile-left-col {
+        /* Handled by CSS grid */
+    }
+
+    .profile-right-col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Minimized gap to pull hostel card up */
+    }
+
+    /* Modify Profile Card to stack vertically on Desktop */
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 30px 20px;
+        margin-top: 0 !important;
+    }
+
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-info p {
+        justify-content: center;
+    }
+
+    /* Remove bottom margin on components inside right col */
+    .bio-section {
+        margin-bottom: 0;
+    }
+}
+
+
+.profile-info p {
+    justify-content: center;
+}
